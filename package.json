@@ -1,0 +1,8 @@
+{
+  "name": "events2",
+  "version": "1.0.0",
+  "description": "Readable ES6 implementation of nodejs EventEmitter",
+  "main": "index.js",
+  "author": "Andrei Volchenko <volchenko.andrei@gmail.com>",
+  "license": "MIT"
+}
