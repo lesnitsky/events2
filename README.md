@@ -2,10 +2,6 @@
 
 ES2015 implementation of nodejs EventEmitter
 
-## Descrirption
-
-This node module is a clone of nodejs [EventEmitter](https://https://nodejs.org/dist/latest-v5.x/docs/api/events.html)
-
 ## Why?
 
 ES2015 is awesome, so why not?
