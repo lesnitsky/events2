@@ -18,5 +18,5 @@ ES2015 is awesome, so why not?
 
    This is an alias for core `emitter.removeListener` AND `emitter.removeAllListeners`. Removes all listeners, or those of the specified event, or specified listener.
  * no `defaultMaxListeners` limit
- * as a result – no `getMaxListners()`
+ * as a result – no `getMaxListners()`/`setMaxListeners()`
  * no `listeners()` and `listenersCount()`
