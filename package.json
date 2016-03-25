@@ -1,9 +1,25 @@
 {
   "name": "events2",
-  "version": "1.0.0",
-  "description": "Readable ES6 implementation of nodejs EventEmitter",
+  "version": "1.0.1",
+  "description": "ES6 implementation of nodejs EventEmitter",
+  "keywords": [
+    "events",
+    "event emitter",
+    "es2015",
+    "es6"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/R1ZZU/events2"
+  },
+  "bugs": {
+    "url": "https://github.com/R1ZZU/events2/issues"
+  },
   "scripts": {
     "test": "./node_modules/.bin/_mocha test/*.js"
+  },
+  "engines": {
+    "node": ">=4.2"
   },
   "main": "index.js",
   "author": "Andrei Volchenko <volchenko.andrei@gmail.com>",
