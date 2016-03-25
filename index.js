@@ -10,7 +10,7 @@ class EventEmitter {
 
 		if (!listeners) {
 			this._events.set(eventName, new Set());
-			return this.on.apply(this, arguments);
+			return this.on(eventName, listener);
 		}
 
 		this.emit('newListener', eventName, listener);
@@ -26,10 +26,6 @@ class EventEmitter {
 		}
 
 		return this.on(eventName, onceListenerWrapper);
-	}
-
-	addListener() {
-		return this.on.apply(this, arguments);
 	}
 
 	off(eventName, listener) {
@@ -68,16 +64,12 @@ class EventEmitter {
 		return this;
 	}
 
-	removeListener() {
-		return this.off.apply(this, arguments);
-	}
-
 	removeAllListeners() {
 		return this.off();
 	}
 
 	emit() {
-		const argsArray = Array.from(arguments)
+		const argsArray = Array.from(arguments);
 		const eventName = argsArray[0];
 		const listenerArgs = argsArray.slice(1);
 
@@ -92,5 +84,10 @@ class EventEmitter {
 		return this;
 	}
 }
+
+const EEPrototype = EventEmitter.prototype;
+
+EEPrototype.addListener = EEPrototype.on;
+EEPrototype.removeListener = EEPrototype.off;
 
 module.exports = EventEmitter;
