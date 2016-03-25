@@ -10,7 +10,7 @@ class EventEmitter {
 
 		if (!listeners) {
 			this._events.set(eventName, new Set());
-			return this.on.apply(this, arguments);
+			return this.on(eventName, listener);
 		}
 
 		this.emit('newListener', eventName, listener);
