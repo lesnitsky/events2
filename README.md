@@ -1,4 +1,4 @@
-# events2
+# events2 [![Build Status](https://travis-ci.org/R1ZZU/events2.svg?branch=master)](https://travis-ci.org/R1ZZU/events2)
 
 ES2015 implementation of nodejs EventEmitter
 
