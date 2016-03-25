@@ -9,7 +9,7 @@ ES2015 is awesome, so why not?
  * highly readable
  * `class` instead of constructor `function EventEmitter`
  * `Map()` instead of `{}` as events storage
- * `Set()` instead of array as event listener storage
+ * `Set()` instead of array as event listeners storage
  * `Array.from(arguments)` instead of `[].slice.call`
 
 ## What's different from core EventEmitter?
