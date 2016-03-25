@@ -69,7 +69,7 @@ class EventEmitter {
 	}
 
 	emit() {
-		const argsArray = Array.from(arguments)
+		const argsArray = Array.from(arguments);
 		const eventName = argsArray[0];
 		const listenerArgs = argsArray.slice(1);
 
