@@ -33,27 +33,38 @@ class EventEmitter {
 	}
 
 	off(eventName, listener) {
-		this.emit('removeListener', eventName, listener);
-
 		const argsCount = arguments.length;
+		var listeners;
+		var keys;
+
+		if (argsCount > 0) {
+			listeners = this._events.get(eventName);
+
+			if (!listeners) {
+				return this;
+			}
+		}
 
 		switch(argsCount) {
 			case 1:
-				this._events.set(eventName, new Set());
+				listeners.forEach(listener => this.off(eventName, listener));
 				return this;
 
 			case 0:
-				this._events = new Map();
+				keys = this._events.keys();
+
+				for (let eventName of keys) {
+					this.off(eventName);
+				}
+
 				return this;
 		}
 
-		const listeners = this._events.get(eventName);
-
-		if (!listeners) {
-			return this;
+		if (eventName !== 'removeListener') {
+			this.emit('removeListener', eventName, listener);
+			listeners.delete(listener);
 		}
 
-		listeners.delete(listener);
 		return this;
 	}
 
