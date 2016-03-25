@@ -2,6 +2,17 @@
 
 ES2015 implementation of nodejs EventEmitter
 
+## Installation
+
+```sh
+npm install events2
+```
+
+### Run Tests
+```sh
+npm test
+```
+
 ## Why?
 
 ES2015 is awesome, so why not?
