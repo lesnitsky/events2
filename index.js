@@ -6,7 +6,6 @@ class EventEmitter {
 	}
 
 	on(eventName, listener) {
-		this.emit('newListener', eventName, listener);
 		const listeners = this._events.get(eventName);
 
 		if (!listeners) {
@@ -14,6 +13,7 @@ class EventEmitter {
 			return this.on.apply(this, arguments);
 		}
 
+		this.emit('newListener', eventName, listener);
 		listeners.add(listener);
 
 		return this;
