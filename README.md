@@ -20,3 +20,8 @@ ES2015 is awesome, so why not?
  * no `defaultMaxListeners` limit
  * as a result – no `getMaxListners()`/`setMaxListeners()`
  * no `listeners()` and `listenersCount()`
+
+
+## Notes
+
+As event listeners storage is a `Set()`, if you'll call `emitter.on` for the same event and listener twice, listener will be called only once (listener will be called as many times as it wa added in nodejs core EventEmitter, but I can't see any real use case for this behaviour, please let me know if you rely on this functionality)
