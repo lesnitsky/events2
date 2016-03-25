@@ -28,10 +28,6 @@ class EventEmitter {
 		return this.on(eventName, onceListenerWrapper);
 	}
 
-	addListener() {
-		return this.on.apply(this, arguments);
-	}
-
 	off(eventName, listener) {
 		const argsCount = arguments.length;
 		var listeners;
@@ -68,10 +64,6 @@ class EventEmitter {
 		return this;
 	}
 
-	removeListener() {
-		return this.off.apply(this, arguments);
-	}
-
 	removeAllListeners() {
 		return this.off();
 	}
@@ -92,5 +84,10 @@ class EventEmitter {
 		return this;
 	}
 }
+
+const EEPrototype = EventEmitter.prototype;
+
+EEPrototype.addListener = EEPrototype.on;
+EEPrototype.removeListener = EEPrototype.off;
 
 module.exports = EventEmitter;
