@@ -35,10 +35,7 @@ describe('#on', () => {
 
 describe('#addListener', () => {
   it('is an alias for #on', () => {
-    sinon.spy(e, 'on');
-    e.addListener('event', listener);
-    e.on.should.have.been.calledWith('event', listener);
-    e.on.should.have.been.calledOn(e);
+    e.addListener.should.equal(e.on);
   });
 });
 
@@ -105,10 +102,7 @@ describe('#off', () => {
 
 describe('#removeListener', () => {
   it('is an alias for #off', () => {
-    sinon.spy(e, 'off');
-    e.removeListener('event', listener);
-    e.off.should.have.been.calledWith('event', listener);
-    e.off.should.have.been.calledOn(e);
+    e.removeListener.should.equal(e.off);
   });
 });
 
