@@ -35,4 +35,4 @@ ES2015 is awesome, so why not?
 
 ## Notes
 
-As event listeners storage is a `Set()`, if you add same listener for same `'event'` repeatedly, listener will be called only once after `'event'` emit (listener will be called as many times as it was added in nodejs core EventEmitter, but I can't see any real use case for this behaviour)
+As event listeners storage is a `Set()`, if you add same listener for same `'event'` repeatedly, listener will be called only once after `'event'` was emited (listener will be called as many times as it was added in nodejs core EventEmitter, but I can't see any real use case for this behaviour)
