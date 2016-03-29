@@ -21,7 +21,7 @@ ES2015 is awesome, so why not?
  * `class` instead of constructor `function EventEmitter`
  * `Map()` instead of `{}` as events storage
  * `Set()` instead of array as event listeners storage
- * `Array.from(arguments)` instead of `[].slice.call`
+ * `Array.from(arguments)` instead of `[].slice.call` (still blocks v8 optimizations)
 
 ## What's different from core EventEmitter?
 
@@ -35,4 +35,4 @@ ES2015 is awesome, so why not?
 
 ## Notes
 
-As event listeners storage is a `Set()`, if you'll call `emitter.on` for the same event and listener twice, listener will be called only once (listener will be called as many times as it wa added in nodejs core EventEmitter, but I can't see any real use case for this behaviour, please let me know if you rely on this functionality)
+As event listeners storage is a `Set()`, if you add same listener for same `'event'` repeatedly, listener will be called only once after `'event'` emit (listener will be called as many times as it was added in nodejs core EventEmitter, but I can't see any real use case for this behaviour)
