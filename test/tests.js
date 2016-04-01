@@ -25,7 +25,7 @@ describe('#on', () => {
     e.on('newListener', function (eventName, _listener) {
       eventName.should.equal('event');
       _listener.should.equal(listener);
-      this._events.get('event').size.should.equal(0);
+      this.countListeners('event').should.equal(0);
       done();
     });
 
@@ -46,7 +46,7 @@ describe('#once', () => {
     e.emit('event');
 
     listener.should.have.been.calledOnce;
-    e._events.get('event').size.should.equal(0);
+    e.countListeners('event').should.equal(0);
   });
 });
 
@@ -83,20 +83,19 @@ describe('#off', () => {
   it('removes specified listener', () => {
     e.off('event', listener);
 
-    const eventsSet = e._events.get('event');
-    eventsSet.has(listener).should.equal(false);
-    eventsSet.size.should.equal(2);
+    e.hasListener('event', listener).should.equal(false);
+    e.countListeners('event').should.equal(2);
   });
 
   it('removes all listeners of specified event', () => {
     e.off('event');
 
-    e._events.get('event').size.should.equal(0);
+    e.countListeners('event').should.equal(0);
   });
 
   it('removes all listeners', () => {
     e.off('event');
-    e._events.get('event').size.should.equal(0);
+    e.countListeners('event').should.equal(0);
   });
 });
 
