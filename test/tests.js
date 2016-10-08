@@ -146,4 +146,17 @@ describe('#emit', () => {
 
     listener.should.have.been.calledOn(e);
   });
-})
+
+  it('returns true if event has listeners', () => {
+    e.on('event', listener);
+    const hasListeners = e.emit('event');
+
+    hasListeners.should.equal(true);
+  });
+
+  it('returns false if event has no listeners', () => {
+    const hasListeners = e.emit('event');
+
+    hasListeners.should.equal(false);
+  });
+});
