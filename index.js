@@ -76,12 +76,12 @@ class EventEmitter {
 		const listeners = this._events.get(eventName);
 
 		if (!listeners) {
-			return this;
+			return false;
 		}
 
 		listeners.forEach(listener => listener.apply(this, listenerArgs));
 
-		return this;
+		return true;
 	}
 }
 
