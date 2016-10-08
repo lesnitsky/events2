@@ -147,14 +147,14 @@ describe('#emit', () => {
     listener.should.have.been.calledOn(e);
   });
 
-  it('return true if event has listeners', () => {
+  it('returns true if event has listeners', () => {
     e.on('event', listener);
     const hasListeners = e.emit('event');
 
     hasListeners.should.equal(true);
   });
 
-  it('return false if event has no listeners', () => {
+  it('returns false if event has no listeners', () => {
     const hasListeners = e.emit('event');
 
     hasListeners.should.equal(false);
