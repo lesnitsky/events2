@@ -83,6 +83,10 @@ class EventEmitter {
 
 		return true;
 	}
+
+  eventNames() {
+    return Array.from(this._events.keys());
+  }
 }
 
 const EEPrototype = EventEmitter.prototype;

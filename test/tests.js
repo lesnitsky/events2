@@ -159,4 +159,33 @@ describe('#emit', () => {
 
     hasListeners.should.equal(false);
   });
+
+  describe('#eventNames', () => {
+    it('returns array type', () => {
+      e.on('event', listener);
+      e.on('event2', listener2);
+      const eventNames = e.eventNames();
+
+      eventNames.should.be.instanceof(Array);
+    });
+
+    it('returns empty array if no listeners', () => {
+      const eventNames = e.eventNames();
+
+      eventNames.should.be.empty;
+    });
+
+    it('returns an array listing the events for which the emitter has listeners', () => {
+      const firstEvent = 'event';
+      const secondEvent = 'event2';
+      const symbolEvent = Symbol('event');
+
+      e.on(firstEvent, listener);
+      e.on(secondEvent, listener2);
+      e.on(symbolEvent, listener3);
+      const eventNames = e.eventNames();
+
+      eventNames.should.include.all.members([firstEvent, secondEvent, symbolEvent]);
+    });
+  });
 });
