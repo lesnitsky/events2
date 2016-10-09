@@ -75,7 +75,11 @@ class EventEmitter {
 		return this.off();
 	}
 
-	emit(eventName, ...listenerArgs) {
+	emit() {
+    const argsArray = Array.from(arguments);
+    const eventName = argsArray[0];
+    const listenerArgs = argsArray.slice(1);
+
 		const listeners = this._events.get(eventName);
 
 		if (!listeners || listeners.length === 0) {
