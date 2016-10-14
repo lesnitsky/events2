@@ -13,16 +13,6 @@ npm install events2
 npm test
 ```
 
-## Why?
-
-ES2015 is awesome, so why not?
-
- * highly readable
- * `class` instead of constructor `function EventEmitter`
- * `Map()` instead of `{}` as events storage
- * `Set()` instead of array as event listeners storage
- * `Array.from(arguments)` instead of `[].slice.call` (still blocks v8 optimizations)
-
 ## What's different from core EventEmitter?
 
  * `emitter.off([eventName, listener])` method
@@ -35,4 +25,4 @@ ES2015 is awesome, so why not?
 
 ## Notes
 
-As event listeners storage is a `Set()`, if you add same listener for same `'event'` repeatedly, listener will be called only once after `'event'` was emited (listener will be called as many times as it was added in nodejs core EventEmitter, but I can't see any real use case for this behaviour)
+As event listeners storage is a `Set()`, if you add same listener for same `'event'` repeatedly, listener will be called only once after `'event'` was emited (listener will be called as many times as it was added in nodejs core EventEmitter)
