@@ -17,7 +17,7 @@ npm test
 
  * `emitter.off([eventName, listener])` method
 
-   This is an alias for core `emitter.removeListener` AND `emitter.removeAllListeners`. Removes all listeners, or those of the specified event, or specified listener.
+   This is an alias for core `emitter.removeListener` AND `emitter.removeAllListeners`. Removes all listeners | all listeners of passed event | passed listener.
  * no `defaultMaxListeners` limit
  * as a result – no `getMaxListners()`/`setMaxListeners()`
  * no `listeners()` and `listenersCount()`
