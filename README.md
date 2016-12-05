@@ -16,8 +16,13 @@ npm test
 ## What's different from core EventEmitter?
 
  * `emitter.off([eventName, listener])` method
-
-   This is an alias for core `emitter.removeListener` AND `emitter.removeAllListeners`. Removes all listeners | all listeners of passed event | passed listener.
+ 
+   This is an alias for core `emitter.removeListener` AND `emitter.removeAllListeners`.
+   ``` javascript
+   emitter.off() // same as emitter.removeAllListeners()
+   emitter.off('event') // removes all listeners of 'event'
+   emitter.off('event', myListener) // removes myListener of 'event'
+   ```
  * no `defaultMaxListeners` limit
  * as a result – no `getMaxListners()`/`setMaxListeners()`
  * no `listeners()` and `listenersCount()`
