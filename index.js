@@ -1,8 +1,11 @@
 'use strict';
 
+const DEFAULT_MAX_LISTENERS = 10;
+
 class EventEmitter {
 	constructor() {
 		this._events = new Map();
+    this._maxListeners = EventEmitter.defaultMaxListeners;
 	}
 
 	on(eventName, listener) {
@@ -15,6 +18,10 @@ class EventEmitter {
 
 		this.emit('newListener', eventName, listener);
 		listeners.add(listener);
+
+    if(listeners.size > this._maxListeners) {
+      console.warn(`Warning: Possible EventEmitter memory leak detected. ${listeners.size} ${eventName} listeners added. Use emitter.setMaxListeners() to increase limit`);
+    }
 
 		return this;
 	}
@@ -69,13 +76,13 @@ class EventEmitter {
 	}
 
 	emit() {
-		const argsArray = Array.from(arguments);
-		const eventName = argsArray[0];
-		const listenerArgs = argsArray.slice(1);
+    const argsArray = Array.from(arguments);
+    const eventName = argsArray[0];
+    const listenerArgs = argsArray.slice(1);
 
 		const listeners = this._events.get(eventName);
 
-		if (!listeners) {
+		if (!listeners || listeners.length === 0) {
 			return false;
 		}
 
@@ -87,11 +94,21 @@ class EventEmitter {
   eventNames() {
     return Array.from(this._events.keys());
   }
+
+  getMaxListeners() {
+    return this._maxListeners;
+  }
+
+  setMaxListeners(n) {
+    this._maxListeners = n;
+    return this;
+  }
 }
 
 const EEPrototype = EventEmitter.prototype;
 
 EEPrototype.addListener = EEPrototype.on;
 EEPrototype.removeListener = EEPrototype.off;
+EventEmitter.defaultMaxListeners = DEFAULT_MAX_LISTENERS;
 
 module.exports = EventEmitter;

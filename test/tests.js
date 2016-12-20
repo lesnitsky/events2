@@ -31,6 +31,17 @@ describe('#on', () => {
 
     e.on('event', listener);
   });
+
+  it('prints warning if more than _maxListeners listeners are added for a particular event', () => {
+    const consoleWarnStub = sinon.stub(console, 'warn');
+    const eventName = 'event';
+
+    e.setMaxListeners(1);
+    e.on(eventName, listener);
+    e.on(eventName, listener2);
+
+    consoleWarnStub.should.have.been.calledOnce;
+  });
 });
 
 describe('#addListener', () => {
@@ -187,5 +198,34 @@ describe('#emit', () => {
 
       eventNames.should.include.all.members([firstEvent, secondEvent, symbolEvent]);
     });
+  });
+
+  describe('#getMaxListeners', () => {
+    it('returns default value if it is not overrided', () => {
+      const DEFAULT_MAX_LISTENERS = 10;
+      const maxListeners = e.getMaxListeners();
+      const defaultMaxListeners = EventEmitter.defaultMaxListeners;
+
+      maxListeners.should.equal(DEFAULT_MAX_LISTENERS);
+      maxListeners.should.equal(defaultMaxListeners);
+    });
+  });
+
+  describe('#setMaxListeners', () => {
+    const MAX_LISTENERS = 100;
+
+    it('overrides max listeners number', () => {
+      e.setMaxListeners(MAX_LISTENERS);
+      const maxListeners = e.getMaxListeners();
+
+      maxListeners.should.equal(MAX_LISTENERS);
+    });
+
+    it('returns a reference to the EventEmitter', () => {
+      const eventEmitter = e.setMaxListeners(MAX_LISTENERS);
+      eventEmitter.should.equal(e);
+    });
+
+
   });
 });
